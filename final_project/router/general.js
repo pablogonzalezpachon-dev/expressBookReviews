@@ -88,41 +88,7 @@ public_users.get('/review/:isbn',function (req, res) {
 
 module.exports.general = public_users;
 
-async function getBooks() {
-    try {
-      const response = await axios.get('https://pablogonza10-5000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai/');
-      console.log(response.data)
-    } catch (error) {
-      console.error(error);
-    }
-}
 
 
-async function getBookByISBN(isbn) {
-    try {
-        const response = await axios.get(`https://pablogonza10-5000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai/isbn/${isbn}`);
-        
-      } catch (error) {
-        console.error(error);
-      } 
-}
 
 
-async function getBookByAuthor(author) {
-    try {
-        const response = await axios.get(`https://pablogonza10-5000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai/author/${author}`);
-        console.log(response.data);
-      } catch (error) {
-        console.error(error);
-      } 
-}
-
-
-async function getBookByTitle(title) {
-    try {
-        const response = await axios.get(`https://pablogonza10-5000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai/title/${title}`);
-        console.log(response.data);
-      } catch (error) {
-        console.error(error);
-      } 
-}
