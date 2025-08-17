@@ -13,31 +13,65 @@ public_users.post("/register", (req,res) => {
 // Get the book list available in the shop
 public_users.get('/',function (req, res) {
   //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
+  res.send(JSON.stringify(books, null, 4));
 });
 
 // Get book details based on ISBN
 public_users.get('/isbn/:isbn',function (req, res) {
-  //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
+  const isbn = req.params.isbn;
+
+  if (books[isbn]) {
+    res.send(JSON.stringify(books[isbn], null, 4));
+  } else {
+    res.send("No books found");
+  }
  });
   
 // Get book details based on author
 public_users.get('/author/:author',function (req, res) {
-  //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
+  const authorRequested = req.params.author;
+  const filteredBooks = {}
+  for (let book in books) {
+    if (books[book]["author"] === authorRequested) {
+        filteredBooks[book] = books[book];
+    }
+  }
+
+  if (Object.keys(filteredBooks).length !== 0) {
+    res.send(JSON.stringify(filteredBooks, null, 4))
+  } else {
+    res.send("No books found");
+  }
+
 });
 
 // Get all books based on title
 public_users.get('/title/:title',function (req, res) {
-  //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
+  const titleRequested = req.params.author;
+  const filteredBooks = {}
+  for (let book in books) {
+    if (books[book]["title"] === titleRequested) {
+        filteredBooks[book] = books[book];
+    }
+  }
+
+  if (Object.keys(filteredBooks).length !== 0) {
+    res.send(JSON.stringify(filteredBooks, null, 4))
+  } else {
+    res.send("No books found");
+  }
 });
 
 //  Get book review
 public_users.get('/review/:isbn',function (req, res) {
   //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
+  const ibsn = req.params.isbn;
+
+  if (books[isbn]["reviews"]) {
+    res.send(JSON.stringify(books[isbn]["reviews"]))
+  } else {
+    res.send("No reviews found");
+  }
 });
 
 module.exports.general = public_users;
