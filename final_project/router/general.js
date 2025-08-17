@@ -88,7 +88,23 @@ public_users.get('/review/:isbn',function (req, res) {
 
 module.exports.general = public_users;
 
+// 4 methods repeated with try await 
 
+
+public_users.get('/', async function (req, res) {
+    //Write your code here
+    try {
+        const response = await new Promise((resolve) => {
+            resolve(books)
+        })
+        return res.status(200).json(response)
+
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json(error);
+    }
+    res.send(JSON.stringify(books, null, 4));
+  });
 
 
 
